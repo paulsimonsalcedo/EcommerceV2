@@ -1,90 +1,100 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import ConfirmDeleteModal from "../components/ConfirmDeleteModal";
+import { toast } from "react-toastify";
+import GetProduct from "../components/GetProduct";
 
 const ProductList = ()=>{   
    
-    //FETCH PRODUCTS 
-    const [products, setProducts] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
+    const [deleteID, setDeleteID] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
-    const [selectedCategory, setSelectedCategory] = useState('all');
-    const [categories , setCategories] = useState([]);
 
-    const handleSelectItem = (e)=>{
-        setSelectedCategory(e.target.value);
+
+    // delete Product
+    const handleShowModal = (e) => {
+        setDeleteID(e.target.value);
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => setShowModal(false);
+
+    const handleDelete = async ()=>{
+
+        try{
+            const response = await axios.post('/api/admin/deleteProduct',{
+                deleteID:deleteID
+            });
+            toast.success(response.data.message);
+            handleCloseModal();
+
+        }catch(error){
+            console.error("There was an error deleting the product:", error);
+        }
+
+
     }
 
-    //getCategories
-    useEffect(()=>{
-        axios.get('/api/admin/getCategories').then((result)=>{
-            setCategories(result.data);
-        }).catch((error) => {
-            console.error('Error fetching categories:', error);
-          });
-    },[]);
+    const renderProductTable = (products)=>{
+        return(
+        <table className="table table-primary">
+            <thead>
+                <tr className="text-center">
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {products.map(product => (
+                    <tr className="text-center" key={product.id}>
+                        <td>{product.product_name}</td>
+                        <td>{product.description}</td>
+                        <td>{product.price}</td>
+                        <td>{product.category.category_name}</td>
+                        <td>
+                            <img src={`/storage/products/${product.image}`} alt={product.name} width="50" />
+                        </td>
+                        <td>
+                            <button 
+                                value={product.id} 
+                                className="btn btn-primary mx-2">
+                                Edit
+                            </button>
+                            <button 
+                                onClick={handleShowModal} 
+                                value={product.id} 
+                                className="btn btn-danger">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                ))} 
+            </tbody>
+        </table>
+        );
+    }
 
-    //getProducts
-    // useEffect(() => {
-    //     fetchProducts(currentPage);
-    // }, [currentPage]);
-
-    // const fetchProducts = async (page) => {
-    //     try {
-    //         const response = await axios.get(`/api/admin/getProducts?page=${page}`);
-    //         setProducts(response.data.data);
-    //         setTotalPages(response.data.last_page);
-    //     } catch (error) {
-    //         console.error("Failed to fetch products", error);
-    //     }
-    // };
-
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
     return(
         <div className="container">
             <div className="row">
                 <div className="col-md-12 col-lg-12">
-                    <div className="category">
-                        <select value={selectedCategory} onChange={handleSelectItem} className="form-select form-select-lg mb-3" aria-label="Large select example">
-                            <option value="" selected>All</option>
-                           {
-                                categories.map((item)=>(
-                                    <option key={item.id} value={item.id}>{item.category_name}</option>
-                                ))
-                           }
-                        </select>
-                    </div>
                     <div className="product-list">
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Category</th>
-                                    <th>Image</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* {products.map(product => (
-                                    <tr key={product.id}>
-                                        <td>{product.name}</td>
-                                        <td>{product.description}</td>
-                                        <td>{product.price}</td>
-                                        <td>{product.category.name}</td>
-                                        <td>
-                                            <img src={`/storage/products/${product.image}`} alt={product.name} width="50" />
-                                        </td>
-                                    </tr>
-                                ))} */}
-                            </tbody>
-                        </table>
+                        <GetProduct renderProductTable={renderProductTable} enableCategoryFilter={true} />
                     </div>
                 </div>
             </div>
+            <ConfirmDeleteModal
+                show={showModal}
+                handleClose={handleCloseModal}
+                handleConfirm={handleDelete}
+                message="Are you sure you want to delete this product?"
+            />
         </div>
+
     )
 }
 

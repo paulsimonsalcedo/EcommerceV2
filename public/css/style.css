@@ -234,7 +234,120 @@
     box-shadow: 0px 0px 20px 10px #555;
  } */
 
+.product-list img{
+  width: 50px;
+  height: 50px;
 
+}
+.settings-section{
+  position: relative;
+  height: 500px !important;
+}
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  display: block;
+  /* Removed position, left, and top to center image properly */
+}
+
+.profile label {
+  margin-top: 20px; /* Add space between image and button if needed */
+  cursor: pointer;  /* Show pointer cursor on hover */
+  /* Removed position, left, and top to align with flexbox */
+}
+
+.profile {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;    /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  text-align: center;      /* Center text inside elements if needed */
+  width: 100%;
+  padding: 50px;
+  height: 100%;
+}
+.profile input[type="file"] {
+  display: none; /* Hide file input */
+}
+.general-settings{
+  margin-top: 100px;
+}
+.product-card{
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.product-card .card{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.product-card .hidden-button{
+  position: absolute;
+  left: 30px;
+  top: 80px;
+  transition: opacity .5ss, visibility .5s !important;
+  opacity: 0;
+  visibility: hidden;
+  
+}
+
+.product-card .hidden-button .buy{
+    padding-left: 45px !important;
+    padding-right: 45px !important;
+    margin-left: 10px;
+}
+
+.product-card .description{
+  padding: 10px;
+  font-size: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  bottom: -50px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .5s;
+}
+
+.product-card .card:hover > .description{
+  opacity: 1;
+  visibility: visible;
+  transition: all .5s;
+  bottom: 0;
+  z-index: 100;
+}
+
+.product-card .card:hover > .hidden-button{
+  transition: opacity .5s, visibility .5s !important;
+  opacity: 1;
+  visibility: visible;
+  z-index: 100;
+}
+
+.product-card .card:hover::before {
+  transition: opacity 0.5s !important;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.product-card .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+  opacity: 0;
+  transition: opacity 1s !important;
+  z-index: 1;
+}
 
  @media (max-width: 991px){
   .side-bar{
@@ -242,3 +355,160 @@
   }
  }
 
+ .progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 20px;
+  width: 0;
+  background-color: #4caf50;
+  transition: width 0.5s ease-in-out;
+}
+.contact-row{
+  position: relative;
+  padding: 50px;
+}
+
+.left-contact{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/contact.jpg");
+  width: 100%;
+  min-height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  line-height: 15px;
+}
+
+.left-contact h2, .left-contact p{
+  text-align: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  position: relative;
+  top: 180px;
+  font-size: 30px;
+}
+
+.contact-form {
+  padding: 40px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contact-form input, 
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form textarea {
+  height: 150px;
+  resize: none;
+}
+
+.contact-form button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.contact-form button:hover {
+  background-color: #218838;
+}
+
+
+/* General styles */
+.about-page {
+  padding: 80px 0;
+  background-color: #f4f4f9;
+}
+
+.about-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.about-text {
+  font-size: 18px;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+/* Button styling */
+.about-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.about-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Image animations */
+.about-image {
+  border-radius: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-image.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Text animations */
+.slide-in {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Make sure everything is visible on scroll */
+@media (min-width: 768px) {
+  .about-text,
+  .about-title {
+      transition-delay: 0.2s;
+  }
+
+  .about-btn {
+      transition-delay: 0.4s;
+  }
+
+  .about-image {
+      transition-delay: 0.6s;
+  }
+}
+.totalCart{
+  background: none;
+  border: none;
+  font-size: 25px;
+  margin-right: 60px;
+  margin-left: 50px;
+}

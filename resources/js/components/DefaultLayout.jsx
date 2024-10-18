@@ -43,6 +43,10 @@ const DefaultLayout = () => {
         navigate('/contact');
     }
 
+    const handleTotalCart = ()=>{
+        navigate('/cart')
+    }
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -71,6 +75,12 @@ const DefaultLayout = () => {
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-danger" type="submit">Search</button>
                     </form>
+                    <button 
+                    className="totalCart"
+                    onClick={handleTotalCart}
+                    ><i className="fas fa-cart-plus"></i>
+                        ()
+                    </button>
                     <div className="nav-user justify-content-end">
                         <i className="fas fa-user">
                             <p className="user-name">User</p>
@@ -85,26 +95,26 @@ const DefaultLayout = () => {
                     <div className="row">
                         <div className="col-md-4 text-center text-md-left mb-4 mb-md-0">
                             <h5>Follow Us</h5>
-                            <div class="social-icons">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <div className="social-icons">
+                                <a href="#"><i className="fab fa-facebook-f"></i></a>
+                                <a href="#"><i className="fab fa-twitter"></i></a>
+                                <a href="#"><i className="fab fa-instagram"></i></a>
+                                <a href="#"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
 
-                        <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <div className="col-md-4 text-center mb-4 mb-md-0">
                             <h5>Subscribe</h5>
-                            <form class="subscribe d-flex justify-content-center">
-                                <input type="email" placeholder="Your Email" class="form-control" />
-                                <button type="submit" class="btn btn-primary">Subscribe</button>
+                            <form className="subscribe d-flex justify-content-center">
+                                <input type="email" placeholder="Your Email" className="form-control" />
+                                <button type="submit" className="btn btn-primary">Subscribe</button>
                             </form>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div class="col text-center mt-4">
-                            <div class="copyright">
+                        <div className="col text-center mt-4">
+                            <div className="copyright">
                                 &copy; 2024 Paul Shop. All rights reserved.
                             </div>
                         </div>

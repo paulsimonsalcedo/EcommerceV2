@@ -20,7 +20,7 @@ class UserService
 
     public function login(array $credentials)
     {
-        if(Auth::attempt($credentials))
+        if(Auth::guard('web')->attempt($credentials))
         {
             Session::regenerate();
             return true;

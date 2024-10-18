@@ -45,7 +45,7 @@ function Index(){
                         <div className="col-md-4 col-lg-4 col-sm-6 col-xs-6 row-inner">
                             <div className="card">
                                 <div className="why-icon">
-                                    <i class="fas fa-shield-alt"></i>
+                                    <i className="fas fa-shield-alt"></i>
                                 </div>
                                 <div className="why-title">
                                     <h3>Secure Shopping Experience</h3>
@@ -58,7 +58,7 @@ function Index(){
                         <div className="col-md-4 col-lg-4 col-sm-6 col-xs-6 row-inner">
                             <div className="card">
                                 <div className="why-icon">
-                                    <i class="fas fa-shipping-fast"></i>
+                                    <i className="fas fa-shipping-fast"></i>
                                 </div>
                                 <div className="why-title">
                                     <h3>Fast and Reliable Shipping</h3>
@@ -71,7 +71,7 @@ function Index(){
                         <div className="col-md-4 col-lg-4 col-sm-6 col-xs-6 row-inner">
                             <div className="card">
                                 <div className="why-icon">
-                                    <i class="fas fa-exchange-alt"></i>
+                                    <i className="fas fa-exchange-alt"></i>
                                 </div>
                                 <div className="why-title">
                                     <h3>Easy Returns and Exchanges</h3>
@@ -84,7 +84,7 @@ function Index(){
                         <div className="col-md-4 col-lg-4 col-sm-6 col-xs-6 row-inner">
                             <div className="card">
                                 <div className="why-icon">
-                                    <i class="fas fa-user-friends"></i>
+                                    <i className="fas fa-user-friends"></i>
                                 </div>
                                 <div className="why-title">
                                     <h3>User-Friendly Interface</h3>
@@ -97,7 +97,7 @@ function Index(){
                         <div className="col-md-4 col-lg-4 col-sm-6 col-xs-6 row-inner">
                             <div className="card">
                                 <div className="why-icon">
-                                    <i class="fas fa-smile"></i>
+                                    <i className="fas fa-smile"></i>
                                 </div>
                                 <div className="why-title">
                                     <h3>Customer Reviews and Ratings</h3>

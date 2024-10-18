@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { ContextProvider } from "./contexts/ContextProvider.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import DefaulLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import Login from "./components/Login";
@@ -18,6 +19,8 @@ import AdminProducts from "./admin/Products.jsx";
 import AdminSettings from "./admin/Settings.jsx";
 import Dashboard from "./admin/Dashboard.jsx";
 import ProductList from "./admin/ProductList.jsx";
+import Test from "./components/Test.jsx";
+import GetCart from "./components/GetCart.jsx";
 // import NotFound from "./components/NotFound";
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -48,6 +51,11 @@ const router = createBrowserRouter([
                 path: '/contact',
                 element: <Contact />
             },
+            {
+                path: '/cart',
+                element: <GetCart />
+            },
+
         ]
     },
     {

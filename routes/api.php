@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminSettingsController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +25,20 @@ use Illuminate\Support\Facades\Route;
 Route::post('/signup', [UserController::class, 'store']);
 Route::post('/signin', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
+
+
+Route::middleware(['auth:sanctum'])->group(function (){
+    Route::post('/addtoCart', [CartController::class, 'addtoCart']);
+    Route::get('/getCartList', [CartController:: class, 'getCart']);
+});
+
 Route::post('/admin/login', [AdminController::class, 'adminLogin']);
 Route::post('/admin/logout',[AdminController::class, 'adminLogout']);
 Route::post('/admin/saveCategory', [AdminController:: class, 'saveCategory']);
 Route::post('/admin/saveProduct', [AdminController::class, 'saveProduct']);
 Route::get('/admin/getCategories',[AdminController::class, 'getCategories']);
-Route::get('admin/getProducts', [AdminController::class,'getProducts']);
+Route::get('/admin/getProducts', [AdminController::class, 'getProducts']);
+Route::post('/admin/deleteProduct', [AdminController::class, 'deleteProduct']);
+Route::get('/admin/getUsers', [AdminController::class, 'getUsers']);
+Route::post('/admin/editAdmin', [AdminController::class, 'editAdmin']);
+Route::get('/admin/getAdminCredentials', [AdminSettingsController::class, 'getAdminCredentials']);
