@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminUserRequest;
+use App\Http\Requests\EditAdminRequest;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Services\AdminService;
@@ -60,8 +61,33 @@ class AdminController extends Controller
         return response()->json(['message' => 'Error']);
     }
 
-    public function getProducts()
+    public function getProducts(Request $request)
     {
-        return $this->adminService->getProducts();
+        $category_id = $request->query('category_id');
+        $result = $this->adminService->getProducts($category_id);
+        return response()->json($result);
     }
+
+    public function deleteProduct(Request $request)
+    {
+        return $this->adminService->deleteProduct($request->deleteID);
+    }
+
+    public function getUsers()
+    {
+        return $this->adminService->getUsers();
+    }
+
+    public function editAdmin(EditAdminRequest $request)
+    {
+        $validated = $request->validated();
+
+        if ($this->adminService->editAdmin($validated)) {
+            return response()->json(['message' => 'Credential Saved'], 200);
+        } 
+        
+        return response()->json(['message' => 'Credential Cannot be Saved'], 500);
+        
+    }
+
 }

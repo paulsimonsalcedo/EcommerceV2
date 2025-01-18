@@ -17,24 +17,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(function () {
     Route::redirect('/', '/login');
-    Route::view('/login', 'auth.login')->name('login');
-    Route::view('/signup', 'auth.signup')->name('signup');
-    
+    Route::view('/login', 'components.layout')->name('login');
+    Route::view('/signup', 'components.layout')->name('signup');
+
     Route::middleware('auth')->group(function () {
-        Route::view('/dashboard', 'dashboard.index')->name('dashboard');
-        Route::view('/about', 'dashboard.about')->name('about');
-        Route::view('/product', 'dashboard.product')->name('product');
-        Route::view('/contact', 'dashboard.contact')->name('contact');
+        // Return the main layout for all authenticated user routes
+        Route::get('/{any}', function () {
+            return view('components.layout');
+        })->where('any', '^(?!admin).*$');  // Exclude admin routes
     });
 
-    Route::view('/admin/login', 'admin.adminLogin')->name('admin.login');
+    Route::view('/admin/login', 'components.layout')->name('admin.login');
 
-    Route::middleware('admin')->group(function(){
-        Route::view('/admin/dashboard', 'admin.adminDashboard');
-        Route::view('/admin/dashboard/products', 'admin.product');
-        Route::view('/admin/dashboard/settings', 'admin.setting');
-        Route::view('/admin/dashboard/orders', 'admin.order');
-        Route::view('/admin/dashboard/users', 'admin.user');
-        Route::view('/admin/dashboard/ProductList', 'admin.productlist');
+    Route::middleware('admin')->group(function () {
+        // Return the main layout for all admin routes
+        Route::get('/admin/{any}', function () {
+            return view('components.layout');
+        })->where('any', '.*');  // Catch all admin routes
     });
+    
 });
